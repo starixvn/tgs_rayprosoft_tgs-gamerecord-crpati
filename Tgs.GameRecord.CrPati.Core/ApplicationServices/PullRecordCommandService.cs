@@ -33,7 +33,7 @@ internal class PullRecordCommandService : ICommandService<PullRecordCommand>
                 apiKey: command.ApiKey,
                 apiSecret: command.ApiSecret,
                 startTime: command.StartTime,
-                endTime: command.StartTime,
+                endTime: command.EndTime,
                 pageNumber: pageNumber,
                 pageSize: 1000,
                 cancellationToken: cancellationToken)
