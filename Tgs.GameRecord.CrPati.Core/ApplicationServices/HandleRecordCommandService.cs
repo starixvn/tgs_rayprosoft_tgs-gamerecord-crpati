@@ -1,0 +1,73 @@
+﻿using Microsoft.Extensions.Options;
+using Tgs.GameRecord.Handle.Client;
+using Tgs.GameRecord.Handle.Common.Protos;
+using Tgs.ServiceUtility;
+
+namespace Tgs.GameRecord.CrPati.Core.ApplicationServices;
+
+internal class HandleRecordCommandService : ICommandService<HandleRecordCommand>
+{
+    private readonly GameRecordInfoOptions _gameRecordInfo;
+    private readonly IGameRecordHandleClient _client;
+
+    public HandleRecordCommandService(
+        IOptions<GameRecordInfoOptions> options,
+        IGameRecordHandleClient client)
+    {
+        _gameRecordInfo = options.Value;
+        _client = client ?? throw new ArgumentNullException(nameof(client));
+    }
+
+    public ValueTask ExecuteAsync(HandleRecordCommand command, CancellationToken cancellationToken = default)
+    {
+        var wagerState = WagerStates.Running;
+        var externalCreatedOn = command.Info.ExternalCreatedOn.ToDateTimeOffset();
+        var externalClosedOn = DateTimeOffset.UnixEpoch;
+        var bet = command.Info.Bet.ToDecimal().GetValueOrDefault(0);
+        var validBet = command.Info.ValidBet.ToDecimal().GetValueOrDefault(0);
+        var settle = 0.0m;
+        var commission = 0.0m;
+        var turnover = 0.0m;
+        var winLoss = 0.0m;
+        var cashoutState = CashoutStates.None;
+
+        if (command.Info.IsClosed)
+        {
+            externalClosedOn = command.Info.ExternalClosedOn.ToDateTimeOffset();
+            settle = command.Info.Settle.ToDecimal().GetValueOrDefault(0);
+            turnover = command.Info.ValidBet.ToDecimal().GetValueOrDefault(0);
+            winLoss = command.Info.WinLoss.ToDecimal().GetValueOrDefault(0);
+            wagerState = command.Info.IsVoid ? WagerStates.Reject :
+                command.Info.IsCancel ? WagerStates.Refund :
+                command.Info.IsCashout ? WagerStates.Refund
+                : winLoss <= 0 ? WagerStates.Lose : WagerStates.Win;
+            cashoutState = (command.Info.IsCashout) ? CashoutStates.Cashout : CashoutStates.None;
+        }
+
+        return _client
+            .MessageAsync(
+            gameProviderCode: _gameRecordInfo.GameProviderCode,
+            playerCode: command.Info.PlayerCode,
+            wagerState: wagerState,
+            wagerType: WagerTypes.Normal,
+            freeGameState: FreeGameStates.None,
+            gambleState: GambleStates.None,
+            cashoutState: cashoutState,
+            resettleState: ResettleStates.None,
+            externalRoundId: command.Info.ExternalWagerId,
+            externalWagerId: command.Info.ExternalWagerId,
+            externalGameId: _gameRecordInfo.GameExternalId,
+            externalCreatedOn: externalCreatedOn,
+            externalClosedOn: externalClosedOn,
+            externalPayoffOn: externalClosedOn,
+            externalResettleOn: DateTimeOffset.UnixEpoch,
+            bet: bet,
+            validBet: validBet,
+            settle: settle,
+            commission: commission,
+            turnover: turnover,
+            winLoss: winLoss,
+            additionalData: command.Info.AdditionalData,
+            cancellationToken: cancellationToken);
+    }
+}

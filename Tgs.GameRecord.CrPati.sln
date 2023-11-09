@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.GameRecord.CrPati", "Tgs.GameRecord.CrPati\Tgs.GameRecord.CrPati.csproj", "{82E6337A-FD0F-48C2-9E6C-12E88A39152D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.GameRecord.CrPati.Core", "Tgs.GameRecord.CrPati.Core\Tgs.GameRecord.CrPati.Core.csproj", "{E2EFB5D8-4878-4EE6-B595-245608EA6A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameRecord.CrPati.Common", "Tgs.GameRecord.CrPati.Common\Tgs.GameRecord.CrPati.Common.csproj", "{2F6A19C8-2CCD-4636-ACFD-43469126BB09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82E6337A-FD0F-48C2-9E6C-12E88A39152D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E6337A-FD0F-48C2-9E6C-12E88A39152D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E6337A-FD0F-48C2-9E6C-12E88A39152D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E6337A-FD0F-48C2-9E6C-12E88A39152D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2EFB5D8-4878-4EE6-B595-245608EA6A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2EFB5D8-4878-4EE6-B595-245608EA6A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2EFB5D8-4878-4EE6-B595-245608EA6A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2EFB5D8-4878-4EE6-B595-245608EA6A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B408A06-9486-42B9-88D8-0011C9F25DAB}
+	EndGlobalSection
+EndGlobal
