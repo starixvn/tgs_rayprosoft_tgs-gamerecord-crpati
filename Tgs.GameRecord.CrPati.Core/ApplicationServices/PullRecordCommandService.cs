@@ -61,6 +61,7 @@ internal class PullRecordCommandService : ICommandService<PullRecordCommand>
                     }
                 }
             }
+            pageNumber++;
         } while (gameWagerInfos.Any());
     }
 }
