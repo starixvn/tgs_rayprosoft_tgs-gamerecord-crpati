@@ -13,6 +13,7 @@ data:
       },
       "GameRecord": {
         "GameCommandClientBaseUrl": "http://game-gamecommand/",
+        "GameRoundsScheduleClientBaseUrl": "http://game-gamerounds-schedule:9090/",
         "GameInterfaceClientBaseUrl": "dns:///game-gameinterface-cp:9090/"
       }
     }
