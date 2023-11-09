@@ -23,7 +23,7 @@ public class CrPatiController : ControllerBase
     /// <summary>
     /// Games the record asynchronous.
     /// </summary>
-    /// <param name="commandService">The command service.</param>
+    /// <param name="client">The client.</param>
     /// <param name="source">The source.</param>
     /// <returns></returns>
     /// <remarks>
@@ -57,8 +57,8 @@ public class CrPatiController : ControllerBase
             gameProviderCode: _gameRecordInfo.GameProviderCode,
             name: source.ApiKey,
             subject: "gp.gamerecord.scheduleform.cp.queued",
-            JsonSerializer.Serialize(parameters),
             source: ScheduleFormSource.Schedule,
+            parameters: JsonSerializer.Serialize(parameters),
             cancellationToken: HttpContext.RequestAborted);
     }
 }

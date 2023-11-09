@@ -50,8 +50,8 @@ internal class JobExecuteCommandService : ICommandService<JobExecuteCommand>
             gameProviderCode: command.GameProviderCode,
             name: command.Name,
             subject: "gp.gamerecord.scheduleform.cp.queued",
-            JsonSerializer.Serialize(parameters),
             source: ScheduleFormSource.Schedule,
+            parameters: JsonSerializer.Serialize(parameters),
             cancellationToken: cancellationToken);
     }
 }

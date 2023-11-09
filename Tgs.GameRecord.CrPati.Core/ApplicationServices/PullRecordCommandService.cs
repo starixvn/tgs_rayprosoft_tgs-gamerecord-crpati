@@ -60,8 +60,8 @@ internal class PullRecordCommandService : ICommandService<PullRecordCommand>
                         _logger.LogError(ex, "LogOn:{logOn} Message: An exception occurred in this game record.({gameWagerInfo})", DateTime.Now.ToString("o"), gameWagerInfo);
                     }
                 }
+                pageNumber++;
             }
-            pageNumber++;
         } while (gameWagerInfos.Any());
     }
 }
