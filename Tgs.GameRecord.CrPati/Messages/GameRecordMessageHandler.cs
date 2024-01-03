@@ -7,9 +7,9 @@ using Valhalla.MessageQueue;
 
 namespace Tgs.GameRecord.CrPati.Messages;
 
-public class GameRecordMessageHandler(
-    ILogger<GameRecordMessageHandler> logger,
-    ICommandService<PullRecordCommand> service) : IMessageHandler
+internal class GameRecordMessageHandler(
+   ILogger<GameRecordMessageHandler> logger,
+   ICommandService<PullRecordCommand> service) : IMessageHandler
 {
     public ValueTask HandleAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default)
     {
