@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
+using Tgs.GameRecord.CrPati.Core;
+using Tgs.GameRecord.CrPati;
 
-namespace Tgs.GameRecord.CrPati.Core;
+namespace Tgs.GameRecord.CrPati;
 
 internal class RedisConnectionManager : IDisposable
 {
@@ -12,8 +14,7 @@ internal class RedisConnectionManager : IDisposable
 
     public RedisConnectionManager(IOptions<RedisOptions> optionsAccessor)
     {
-        if (optionsAccessor is null)
-            throw new ArgumentNullException(nameof(optionsAccessor));
+        ArgumentNullException.ThrowIfNull(optionsAccessor);
 
         var options = optionsAccessor.Value;
 

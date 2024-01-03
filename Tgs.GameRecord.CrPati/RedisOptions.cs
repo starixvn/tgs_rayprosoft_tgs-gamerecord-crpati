@@ -1,4 +1,5 @@
-﻿namespace Tgs.GameRecord.CrPati.Core;
+﻿using Tgs.GameRecord.CrPati.Core;
+namespace Tgs.GameRecord.CrPati;
 
 public record RedisOptions
 {

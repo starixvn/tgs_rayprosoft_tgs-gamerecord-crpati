@@ -1,11 +1,8 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Tgs.GameRecord.CrPati.Common;
-using Tgs.GameRecord.CrPati.Core;
-using Tgs.GameRecord.CrPati.ViewModel;
-using Tgs.GameRounds.Schedule.Client;
-using Tgs.GameRounds.Schedule.Protos;
+using Valhalla.MessageQueue;
 
 namespace Tgs.GameRecord.CrPati.Controllers;
 
@@ -13,18 +10,11 @@ namespace Tgs.GameRecord.CrPati.Controllers;
 [ApiController]
 public class CrPatiController : ControllerBase
 {
-    private readonly GameRecordInfoOptions _gameRecordInfo;
-
-    public CrPatiController(IOptions<GameRecordInfoOptions> options)
-    {
-        _gameRecordInfo = options.Value;
-    }
-
     /// <summary>
-    /// Games the record asynchronous.
+    ///
     /// </summary>
-    /// <param name="client">The client.</param>
-    /// <param name="source">The source.</param>
+    /// <param name="messageSender"></param>
+    /// <param name="source"></param>
     /// <returns></returns>
     /// <remarks>
     /// <b>Example</b><br />
@@ -41,24 +31,10 @@ public class CrPatiController : ControllerBase
     /// </remarks>
     [HttpPost]
     public ValueTask GameRecordAsync(
-       [FromServices] IGameRoundsScheduleClient client,
-       [FromBody] PullRecordViewModel source)
-    {
-        var parameters = new GameRecordMessage
-        {
-            ApiUrl = source.ApiUrl,
-            ApiKey = source.ApiKey,
-            ApiSecret = source.ApiSecret,
-            StartTime = source.StartTime,
-            EndTime = source.EndTime,
-        };
-
-        return client.ScheduleFormQueuedAsync(
-            gameProviderCode: _gameRecordInfo.GameProviderCode,
-            name: source.ApiKey,
-            subject: "gp.gamerecord.scheduleform.cp.queued",
-            source: ScheduleFormSource.Schedule,
-            parameters: JsonSerializer.Serialize(parameters),
+       [FromServices] IMessageSender messageSender,
+       CrPatiGameRecordMessage source)
+        => messageSender.PublishAsync(
+            subject: CrPatiNatsConst.ManualPublish,
+            data: Encoding.UTF8.GetBytes(JsonSerializer.Serialize(source)),
             cancellationToken: HttpContext.RequestAborted);
-    }
 }
