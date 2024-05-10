@@ -16,7 +16,7 @@ public class InfoController(
     public async Task<object> GetAsync([FromServices] IWebHostEnvironment _hostingEnvironment)
     {
         var hostName = Dns.GetHostName();
-        var hostEntry = await Dns.GetHostEntryAsync(hostName);
+        var hostEntry = await Dns.GetHostEntryAsync(hostName).ConfigureAwait(false);
         var hostIp = Array.Find(hostEntry.AddressList,
             x => x.AddressFamily == AddressFamily.InterNetwork);
 

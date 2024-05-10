@@ -20,7 +20,6 @@ public static class ServiceCollectionExtensions
         .AddMemoryCache()
         .AddGameCommandClient(gameCommandClientOptions)
         .AddGameInterfaceCrPatiClient(gameInterfaceCrPatiClientOptions)
-        .AddGameRecordHandleClient()
         .AddTransient<IHangfireUtensil, HangfireUtensil>()
         .AddTransient<IHangfireLock>(sp => ActivatorUtilities.CreateInstance<HangfireLock>(sp, redisDatabaseResolver(sp)));
 }
