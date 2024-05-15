@@ -13,6 +13,7 @@ using Tgs.GameRecord.CrPati.Core.ApplicationServices;
 using Valhalla.MessageQueue;
 
 namespace Tgs.GameRecord.CrPati.Core.UnitTest.ApplicationServices;
+
 public class HandleRecordCommandServiceUnitTest
 {
 	[Fact]
@@ -254,7 +255,6 @@ public class HandleRecordCommandServiceUnitTest
 					["GameType"] = 16,
 					["GameKind"] = 0
 				}.ToJsonString()
-
 			});
 
 		var sut = new HandleRecordCommandService(
