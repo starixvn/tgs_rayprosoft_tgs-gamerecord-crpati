@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.GameRecord.CrPati", "Tg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.GameRecord.CrPati.Core", "Tgs.GameRecord.CrPati.Core\Tgs.GameRecord.CrPati.Core.csproj", "{E2EFB5D8-4878-4EE6-B595-245608EA6A01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameRecord.CrPati.Common", "Tgs.GameRecord.CrPati.Common\Tgs.GameRecord.CrPati.Common.csproj", "{2F6A19C8-2CCD-4636-ACFD-43469126BB09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tgs.GameRecord.CrPati.Common", "Tgs.GameRecord.CrPati.Common\Tgs.GameRecord.CrPati.Common.csproj", "{2F6A19C8-2CCD-4636-ACFD-43469126BB09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameRecord.CrPati.Core.UnitTest", "Tgs.GameRecord.CrPati.Core.UnitTest\Tgs.GameRecord.CrPati.Core.UnitTest.csproj", "{2AE191B0-8506-4AAE-AAE4-5B6082EB0876}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F6A19C8-2CCD-4636-ACFD-43469126BB09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE191B0-8506-4AAE-AAE4-5B6082EB0876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE191B0-8506-4AAE-AAE4-5B6082EB0876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE191B0-8506-4AAE-AAE4-5B6082EB0876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE191B0-8506-4AAE-AAE4-5B6082EB0876}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
