@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Tgs.GameRecord.CrPati.Common;
@@ -24,7 +23,7 @@ internal class JobExecuteCommandService(
 		var endTime = DateTimeOffset.ParseExact(DateTimeOffset.UtcNow.ToString(@"yyyy-MM-dd\THH:mm:00K"), @"yyyy-MM-dd\THH:mm:00K", null, styles: System.Globalization.DateTimeStyles.RoundtripKind);
 		var startTime = endTime.AddMinutes(_intervalMinutes * -1);
 
-		var parameters = new CrPatiGameRecordMessage
+		var message = new CrPatiGameRecordMessage
 		{
 			ApiUrl = command.ApiUrl,
 			ApiKey = command.ApiKey,
@@ -33,11 +32,25 @@ internal class JobExecuteCommandService(
 			EndTime = endTime,
 		};
 
-		logger.LogInformation("LogOn:{logOn} Parameters:{parameters}", DateTime.Now.ToString("u"), parameters);
+		logger.LogInformation("{logInformation}",
+			JsonSerializer.Serialize(new
+			{
+				LogOn = DateTime.Now.ToString("u"),
+				Subject = CrPatiNatsConst.SchedulePublish,
+				Data = new
+				{
+					message.ApiUrl,
+					message.ApiKey,
+					message.ApiSecret,
+					StartTime = message.StartTime.ToString("u"),
+					EndTime = message.EndTime.ToString("u")
+				},
+				Message = "This message publishing handler."
+			}));
 
 		return messageSender.PublishAsync(
 			subject: CrPatiNatsConst.SchedulePublish,
-			data: Encoding.UTF8.GetBytes(JsonSerializer.Serialize(parameters)),
+			data: JsonSerializer.SerializeToUtf8Bytes(message),
 			cancellationToken: cancellationToken);
 	}
 }
