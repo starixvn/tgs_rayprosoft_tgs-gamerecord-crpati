@@ -5,13 +5,6 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ServerGarbageCollection>true</ServerGarbageCollection>
-		<UserSecretsId>0e06b06f-93fe-45ec-b278-8e154bebd5d5</UserSecretsId>
-		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-		<NoWarn>$(NoWarn);1591;0063</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +26,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Tgs.GameRecord.CrPati.Common\Tgs.GameRecord.CrPati.Common.csproj" />
 		<ProjectReference Include="..\Tgs.GameRecord.CrPati.Core\Tgs.GameRecord.CrPati.Core.csproj" />
+		<ProjectReference Include="..\Tgs.GameRecord.CrPati.Repositories\Tgs.GameRecord.CrPati.Repositories.csproj" />
 	</ItemGroup>
 
 </Project>
