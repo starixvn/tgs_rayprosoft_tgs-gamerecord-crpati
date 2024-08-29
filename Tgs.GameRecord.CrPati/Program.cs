@@ -119,7 +119,6 @@ builder.Services
 	.AddNatsGlobPatternExchange(CrPatiNatsConst.SchedulePublish)
 	.AddNatsGlobPatternExchange(CrPatiNatsConst.ManualPublish);
 
-
 builder.Services
 	.AddOpenTelemetry()
 	.WithTracing(builder => builder

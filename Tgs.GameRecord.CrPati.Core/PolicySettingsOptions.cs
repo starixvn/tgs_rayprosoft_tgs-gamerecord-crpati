@@ -1,4 +1,4 @@
-namespace Tgs.GameRecord.CrPati.Core;
+﻿namespace Tgs.GameRecord.CrPati.Core;
 
 public record PolicySettingsOptions
 {
