@@ -4,8 +4,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 using Tgs.GameInterface.CrPati.Protos;
-using Tgs.GameRecord.Handle.Client;
 using Tgs.GameRecord.CrPati.Core.ApplicationServices;
+
+using Tgs.GameRecord.Handle.Client;
 
 namespace Tgs.GameRecord.CrPati.Core.UnitTest.ApplicationServices;
 
